@@ -29,6 +29,14 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+Real music platforms, such as Spotify and Pandora, use recommendation systems combined with content signals such as track sound and tagging to predict what a listener might enjoy next by combining various types of data. Some systems use collaborative filtering, which examines patterns across multiple users and recommends songs based on similar behavior, whereas others use content-based filtering, which focuses on the song's attributes. This show project uses a content-based approach since there is no community of users, only each song’s attributes and a single taste profile. The recommender will use those features to compute a weighted score for each song, and then return the top songs based on their score. After rating each song, it will rank them from best to worst in order to generate recommendations.
+
+Song: id, title, artist, genre, mood, energy, tempo_bpm, valence, danceability, acousticness
+
+UserProfile: favorite_genre, favorite_mood, target_energy, likes_acoustic
+
+The recommender will use song attributes such as genre, mood, energy, acousticness, and other numeric fields if needed, along with a user profile that stores target preferences. It will score each song by giving weighted points for genre and mood matches and additional points based on how close the numeric features are to the user’s preferences. After that, it will rank the songs by score and return the top k recommendations.
+
 ---
 
 ## Getting Started
@@ -36,19 +44,18 @@ You can include a simple diagram or bullet list if helpful.
 ### Setup
 
 1. Create a virtual environment (optional but recommended):
-
-   ```bash
+  ```bash
    python -m venv .venv
    source .venv/bin/activate      # Mac or Linux
    .venv\Scripts\activate         # Windows
-
+  ```
 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Run the app:
+1. Run the app:
 
 ```bash
 python -m src.main
@@ -74,6 +81,12 @@ Use this section to document the experiments you ran. For example:
 - What happened when you added tempo or valence to the score
 - How did your system behave for different types of users
 
+
+
+![Recommendations terminal output](./Users/princess/Desktop/Code Path/ai110-module3show-musicrecommendersimulation-starter/songRecommendations.png)
+
+
+
 ---
 
 ## Limitations and Risks
@@ -94,13 +107,12 @@ You will go deeper on this in your model card.
 
 Read and complete `model_card.md`:
 
-[**Model Card**](model_card.md)
+**[Model Card](model_card.md)**
 
 Write 1 to 2 paragraphs here about what you learned:
 
 - about how recommenders turn data into predictions
 - about where bias or unfairness could show up in systems like this
-
 
 ---
 
@@ -208,4 +220,6 @@ A few sentences about what you learned:
 - What surprised you about how your system behaved
 - How did building this change how you think about real music recommenders
 - Where do you think human judgment still matters, even if the model seems "smart"
+
+```
 
