@@ -83,7 +83,7 @@ Use this section to document the experiments you ran. For example:
 
 
 
-![Recommendations terminal output](./Users/princess/Desktop/Code Path/ai110-module3show-musicrecommendersimulation-starter/songRecommendations.png)
+![Recommendations terminal output](https://github.com/PrincessCodePath/ai110-module3show-musicrecommendersimulation-starter/blob/main/songRecommendations.png)
 
 
 
