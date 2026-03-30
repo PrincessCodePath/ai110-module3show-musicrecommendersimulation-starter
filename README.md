@@ -81,11 +81,7 @@ Use this section to document the experiments you ran. For example:
 - What happened when you added tempo or valence to the score
 - How did your system behave for different types of users
 
-
-
-![Recommendations terminal output](https://github.com/PrincessCodePath/ai110-module3show-musicrecommendersimulation-starter/blob/main/songRecommendations.png)
-
-
+![Recommendations terminal output](songRecommendations.png)
 
 ---
 
@@ -114,112 +110,20 @@ Write 1 to 2 paragraphs here about what you learned:
 - about how recommenders turn data into predictions
 - about where bias or unfairness could show up in systems like this
 
----
 
-## 7. `model_card_template.md`
 
-Combines reflection and model card framing from the Module 3 guidance. :contentReference[oaicite:2]{index=2}  
+- What was your biggest learning moment during this project?
 
-```markdown
-# 🎧 Model Card - Music Recommender Simulation
+The clearest moment for me was seeing the top 5 list change after I adjusted the weights. The recommendations come from the rules behind the system, not just the data itself, and a small change in what the model values can completely shift the results.
 
-## 1. Model Name
+- How did using AI tools help you, and when did you need to double-check them?
 
-Give your recommender a name, for example:
+AI was helpful for brainstorming user profiles and edge cases I might not have thought of right away. I still had to verify everything against the CSV by checking that numeric values were actually being treated as numbers, that string matches were exact, and that the printed reasons actually matched what the code was doing.
 
-> VibeFinder 1.0
+- What surprised you about how simple algorithms can still "feel" like recommendations?
 
----
+What surprised me most was how quickly the output started to feel believable/trustworthy once each song had a score and a short explanation. Even a basic rule set can seem thoughtful because it lines up with the way people already describe music through genre, mood, and energy, even if the system itself is still basic.
 
-## 2. Intended Use
+- What would you try next if you extended this project?
 
-- What is this system trying to do
-- Who is it for
-
-Example:
-
-> This model suggests 3 to 5 songs from a small catalog based on a user's preferred genre, mood, and energy level. It is for classroom exploration only, not for real users.
-
----
-
-## 3. How It Works (Short Explanation)
-
-Describe your scoring logic in plain language.
-
-- What features of each song does it consider
-- What information about the user does it use
-- How does it turn those into a number
-
-Try to avoid code in this section, treat it like an explanation to a non programmer.
-
----
-
-## 4. Data
-
-Describe your dataset.
-
-- How many songs are in `data/songs.csv`
-- Did you add or remove any songs
-- What kinds of genres or moods are represented
-- Whose taste does this data mostly reflect
-
----
-
-## 5. Strengths
-
-Where does your recommender work well
-
-You can think about:
-- Situations where the top results "felt right"
-- Particular user profiles it served well
-- Simplicity or transparency benefits
-
----
-
-## 6. Limitations and Bias
-
-Where does your recommender struggle
-
-Some prompts:
-- Does it ignore some genres or moods
-- Does it treat all users as if they have the same taste shape
-- Is it biased toward high energy or one genre by default
-- How could this be unfair if used in a real product
-
----
-
-## 7. Evaluation
-
-How did you check your system
-
-Examples:
-- You tried multiple user profiles and wrote down whether the results matched your expectations
-- You compared your simulation to what a real app like Spotify or YouTube tends to recommend
-- You wrote tests for your scoring logic
-
-You do not need a numeric metric, but if you used one, explain what it measures.
-
----
-
-## 8. Future Work
-
-If you had more time, how would you improve this recommender
-
-Examples:
-
-- Add support for multiple users and "group vibe" recommendations
-- Balance diversity of songs instead of always picking the closest match
-- Use more features, like tempo ranges or lyric themes
-
----
-
-## 9. Personal Reflection
-
-A few sentences about what you learned:
-
-- What surprised you about how your system behaved
-- How did building this change how you think about real music recommenders
-- Where do you think human judgment still matters, even if the model seems "smart"
-
-```
-
+Next, I would focus on making the recommender feel more realistic. Right now it can only represent a very narrow version of someone’s taste, so I would want it to handle mixed preferences instead of assuming a person fits into one mood or one genre. I would also add more variety to the top results so the recommendations do not all blend together, and I would bring in more numeric features to make the matching feel more specific.

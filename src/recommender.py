@@ -5,6 +5,11 @@ from dataclasses import dataclass
 import csv
 import math
 
+GENRE_MATCH_POINTS = 1.0
+MOOD_MATCH_POINTS = 1.0
+ENERGY_SIMILARITY_WEIGHT = 4.0
+ACOUSTIC_PREFERENCE_WEIGHT = 1.0
+
 @dataclass
 class Song:
     """
@@ -124,16 +129,16 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     target_energy = user_prefs.get("target_energy", user_prefs.get("energy"))
 
     if user_genre is not None and song.get("genre") == user_genre:
-        score += 2.0
-        reasons.append("genre match (+2.0)")
+        score += GENRE_MATCH_POINTS
+        reasons.append(f"genre match (+{GENRE_MATCH_POINTS:.1f})")
 
     if user_mood is not None and song.get("mood") == user_mood:
-        score += 1.0
-        reasons.append("mood match (+1.0)")
+        score += MOOD_MATCH_POINTS
+        reasons.append(f"mood match (+{MOOD_MATCH_POINTS:.1f})")
 
     if target_energy is not None and song.get("energy") is not None:
         diff = abs(float(song["energy"]) - float(target_energy))
-        energy_points = 2.0 * max(0.0, 1.0 - diff)
+        energy_points = ENERGY_SIMILARITY_WEIGHT * max(0.0, 1.0 - diff)
         score += energy_points
         reasons.append(f"energy close to target (+{energy_points:.2f})")
 
@@ -141,10 +146,10 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     if likes_acoustic is not None and song.get("acousticness") is not None:
         a = float(song["acousticness"])
         if bool(likes_acoustic):
-            acoustic_points = 1.0 * a
+            acoustic_points = ACOUSTIC_PREFERENCE_WEIGHT * a
             reasons.append(f"acoustic preference (+{acoustic_points:.2f})")
         else:
-            acoustic_points = 1.0 * (1.0 - a)
+            acoustic_points = ACOUSTIC_PREFERENCE_WEIGHT * (1.0 - a)
             reasons.append(f"non-acoustic preference (+{acoustic_points:.2f})")
         score += acoustic_points
 
